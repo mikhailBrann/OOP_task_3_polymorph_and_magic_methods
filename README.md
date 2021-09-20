@@ -1,16 +1,33 @@
-# Задание № 1. Наследование
-Исходя из квиза к предыдущему занятию, у нас уже есть класс преподавателей и класс студентов (вы можете взять этот код за основу или написать свой). 
-
-Студентов пока оставим без изменения, а вот преподаватели бывают разные, поэтому теперь класс Mentor должен стать родительским классом, а от него нужно реализовать наследование классов Lecturer (лекторы) и Reviewer (эксперты, проверяющие домашние задания). 
-
-Очевидно, имя, фамилия и список закрепленных курсов логично реализовать на уровне родительского класса.
+# Задание № 2. Атрибуты и взаимодействие классов.
+В квизе к предыдущей лекции мы реализовали возможность выставлять студентам оценки за домашние задания. 
+Теперь это могут делать только Reviewer (реализуйте такой метод):
 
 ```python
-class Lecturer(Mentor):
-    def __init__(self,name,surname):
-        super().__init__(name,surname)
+def grading(self, student, course, grade):
+    if int(grade) >= 1 and int(grade) <= 10:
+        if course in student.grades:
+            student.grades[course].append(grade)
+        else:
+            student.grades[course] = [grade]
+    else:
+        print(f"{grade} - для оценки введите число от 1 до 10")
+```
 
-class Reviewer(Mentor):
-    def __init__(self,name,surname):
-        super().__init__(name,surname)
+
+А что могут делать лекторы? Получать оценки за лекции от студентов :) 
+Реализуйте метод выставления оценок лекторам у класса Student (оценки по 10-балльной шкале, хранятся в атрибуте-словаре у Lecturer, в котором ключи – названия курсов, а значения – списки оценок). Лектор при этом должен быть закреплен за тем курсом, на который записан студент:
+
+```python
+def grading_lecturer(self, lecturer, course, grade):
+    if course in self.courses_in_progress and course in lecturer.courses_attached:
+        if int(grade) >= 1 and int(grade) <= 10:
+            if hasattr(lecturer, 'grades'):
+                lecturer.grades[course] += [grade]
+            else:
+                lecturer.grades = {course: [grade]}
+        else:
+            print(f"{grade} - для оценки введите число от 1 до 10")
+    else:
+        if course not in lecturer.courses_attached:
+            print(f"{lecturer.name} {lecturer.surname} не закреплен за курсом!")
 ```
