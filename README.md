@@ -1,33 +1,23 @@
-# Задание № 2. Атрибуты и взаимодействие классов.
-В квизе к предыдущей лекции мы реализовали возможность выставлять студентам оценки за домашние задания. 
-Теперь это могут делать только Reviewer (реализуйте такой метод):
+# Задание № 3. Полиморфизм и магические методы
+Перегрузите магический метод __str__ у всех классов.
+У проверяющих он должен выводить информацию в следующем виде:
 
-```python
-def grading(self, student, course, grade):
-    if int(grade) >= 1 and int(grade) <= 10:
-        if course in student.grades:
-            student.grades[course].append(grade)
-        else:
-            student.grades[course] = [grade]
-    else:
-        print(f"{grade} - для оценки введите число от 1 до 10")
-```
+print(some_reviewer)
+Имя: Some
+Фамилия: Buddy
+У лекторов:
 
+print(some_lecturer)
+Имя: Some
+Фамилия: Buddy
+Средняя оценка за лекции: 9.9
 
-А что могут делать лекторы? Получать оценки за лекции от студентов :) 
-Реализуйте метод выставления оценок лекторам у класса Student (оценки по 10-балльной шкале, хранятся в атрибуте-словаре у Lecturer, в котором ключи – названия курсов, а значения – списки оценок). Лектор при этом должен быть закреплен за тем курсом, на который записан студент:
+А у студентов так:
+print(some_student)
+Имя: Ruoy
+Фамилия: Eman
+Средняя оценка за домашние задания: 9.9
+Курсы в процессе изучения: Python, Git
+Завершенные курсы: Введение в программирование
 
-```python
-def grading_lecturer(self, lecturer, course, grade):
-    if course in self.courses_in_progress and course in lecturer.courses_attached:
-        if int(grade) >= 1 and int(grade) <= 10:
-            if hasattr(lecturer, 'grades'):
-                lecturer.grades[course] += [grade]
-            else:
-                lecturer.grades = {course: [grade]}
-        else:
-            print(f"{grade} - для оценки введите число от 1 до 10")
-    else:
-        if course not in lecturer.courses_attached:
-            print(f"{lecturer.name} {lecturer.surname} не закреплен за курсом!")
-```
+Реализуйте возможность сравнивать (через операторы сравнения) между собой лекторов по средней оценке за лекции и студентов по средней оценке за домашние задания.

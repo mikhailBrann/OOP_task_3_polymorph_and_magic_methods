@@ -54,21 +54,3 @@ class Reviewer(Mentor):
             print(f"{grade} - для оценки введите число от 1 до 10")
 
 
-student_oleg = Student('Oleg', 'Olegov', 'Male')
-reviewer_ivan = Reviewer('Ivan', 'Ivanov')
-reviewer_ivan.grading(student_oleg,'Git', 7)
-
-print(student_oleg.grades)
-
-
-lecturer_ruslan = Lecturer('Ruslan', 'Ruslanov')
-lecturer_ruslan.courses_attached.append('PHP')
-lecturer_ruslan.courses_attached.append('Python')
-lecturer_ruslan.courses_attached.append('Git')
-
-student_oleg.courses_in_progress.append('Git')
-student_oleg.courses_in_progress.append('Python')
-student_oleg.grading_lecturer(lecturer_ruslan, 'Git', 8)
-student_oleg.grading_lecturer(lecturer_ruslan, 'Git', 9)
-
-print(lecturer_ruslan.grades)
