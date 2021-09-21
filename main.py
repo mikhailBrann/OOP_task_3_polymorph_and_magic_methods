@@ -66,7 +66,7 @@ class Student(Person):
                 if course in lecturer.grades:
                     lecturer.grades[course].append(grade)
                 else:
-                    lecturer.grades = {course: [grade]}
+                    lecturer.grades.setdefault(course, [grade])
             else:
                 print(f"{grade} - для оценки введите число от 1 до 10")
         else:
@@ -105,7 +105,7 @@ class Reviewer(Mentor):
             if course in student.grades:
                 student.grades[course].append(grade)
             else:
-                student.grades[course] = [grade]
+                student.grades.setdefault(course, [grade])
         else:
             print(f"{grade} - для оценки введите число от 1 до 10")
 
