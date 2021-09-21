@@ -12,7 +12,6 @@ def calculate_rating(course_list):
         return 0.0
 
 
-
 class Person:
     def __str__(self):
         this_class_name = self.__class__.__name__
@@ -50,7 +49,6 @@ class Person:
 
         if this_class_name == 'Student' or this_class_name == 'Lecturer':
             return calculate_rating(self.grades) < calculate_rating(other.grades)
-
 
 
 class Student(Person):
@@ -91,10 +89,12 @@ class Mentor(Person):
         else:
             return 'Ошибка'
 
+
 class Lecturer(Mentor):
     def __init__(self, name, surname):
         super().__init__(name,surname)
         self.grades = {}
+
 
 class Reviewer(Mentor):
     def __init__(self, name, surname):
